@@ -13,7 +13,8 @@ set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -ffast-math -O3")
 
 add_definitions(-DOPENSTEER -DUSEOpenGL)
 
-include_directories(include ${OPENGL_INCLUDE_DIRS} ${GLUT_INCLUDE_DIRS})
+include_directories(${OPENGL_INCLUDE_DIRS} ${GLUT_INCLUDE_DIRS})
+include_directories(include)
 
 set(HEADER_FILES
         include/OpenSteer/AbstractVehicle.h
