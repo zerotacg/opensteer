@@ -1,0 +1,36 @@
+SET(CMAKE_SYSTEM_NAME Linux)
+
+find_path (
+        EMSDK_PATH
+        emsdk
+        HINTS ENV EMSDK
+)
+
+file(GLOB EMSCRIPTEN_SEARCH_PATHS "${EMSDK_PATH}/emscripten/*/")
+
+find_program (
+        EMSCRIPTEN_C_COMPILER
+        emcc
+        HINTS PATHS ${EMSCRIPTEN_SEARCH_PATHS}
+)
+
+find_program (
+        EMSCRIPTEN_CXX_COMPILER
+        em++
+        HINTS PATHS ${EMSCRIPTEN_SEARCH_PATHS}
+)
+
+
+SET(CMAKE_C_COMPILER   ${EMSCRIPTEN_C_COMPILER})
+SET(CMAKE_CXX_COMPILER ${EMSCRIPTEN_CXX_COMPILER})
+
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -s WASM=1")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -s WASM=1")
+
+find_path(
+        EMSCRIPTEN_INCLUDE_DIR
+        emscripten.h
+        HINTS PATHS ${EMSCRIPTEN_SEARCH_PATHS}/system/include
+)
+
+set(OPENGL_INCLUDE_DIRS ${EMSCRIPTEN_INCLUDE_DIR})

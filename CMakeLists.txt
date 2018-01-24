@@ -1,15 +1,19 @@
 cmake_minimum_required(VERSION 3.5)
 project(opensteer)
 
-find_package(OpenGL REQUIRED)
-find_package(GLUT REQUIRED)
+#find_package(OpenGL REQUIRED)
+#find_package(GLUT REQUIRED)
 
 #set(CMAKE_CXX_STANDARD 11)
 if (NOT CMAKE_BUILD_TYPE)
     set(CMAKE_BUILD_TYPE Release)
 endif ()
 
-set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -ffast-math -O3")
+set(CMAKE_EXECUTABLE_SUFFIX .html)
+set(CMAKE_SHARED_LIBRARY_SUFFIX .html)
+
+
+set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -ffast-math")
 
 add_definitions(-DOPENSTEER -DUSEOpenGL)
 
@@ -86,5 +90,7 @@ set(SOURCE_FILES
         plugins/Soccer.cpp
         )
 
+
 add_executable(OpenSteerDemo ${SOURCE_FILES} ${HEADER_FILES})
+
 target_link_libraries(OpenSteerDemo ${OPENGL_LIBRARIES} ${GLUT_LIBRARY})
