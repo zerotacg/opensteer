@@ -1,16 +1,22 @@
 cmake_minimum_required(VERSION 3.5)
 project(opensteer)
 
-#find_package(OpenGL REQUIRED)
-#find_package(GLUT REQUIRED)
+
+find_package(OpenGL)
+find_package(GLUT)
 
 #set(CMAKE_CXX_STANDARD 11)
 if (NOT CMAKE_BUILD_TYPE)
     set(CMAKE_BUILD_TYPE Release)
 endif ()
 
-set(CMAKE_EXECUTABLE_SUFFIX .html)
-set(CMAKE_SHARED_LIBRARY_SUFFIX .html)
+
+if (DEFINED OVERRIDE_EXECUTABLE_SUFFIX)
+    set(CMAKE_EXECUTABLE_SUFFIX ${OVERRIDE_EXECUTABLE_SUFFIX})
+endif ()
+if (DEFINED OVERRIDE_SHARED_LIBRARY_SUFFIX)
+    set(CMAKE_SHARED_LIBRARY_SUFFIX ${OVERRIDE_SHARED_LIBRARY_SUFFIX})
+endif ()
 
 
 set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -ffast-math")
