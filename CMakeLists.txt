@@ -62,11 +62,17 @@ set(HEADER_FILES
         include/OpenSteer/Vec3Utilities.h
         )
 
+if (WITH_OPENGL_ES)
+    set(DRAW_SOURCE_FILES src/Draw_gles.cpp)
+else()
+    set(DRAW_SOURCE_FILES src/Draw.cpp)
+endif()
+
 set(SOURCE_FILES
         src/Camera.cpp
         src/Clock.cpp
         src/Color.cpp
-        src/Draw.cpp
+        ${DRAW_SOURCE_FILES}
         src/lq.c
         src/main.cpp
         src/Obstacle.cpp

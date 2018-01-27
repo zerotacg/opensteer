@@ -30,6 +30,8 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -s WASM=1")
 set(OVERRIDE_EXECUTABLE_SUFFIX      .html)
 set(OVERRIDE_SHARED_LIBRARY_SUFFIX  .html)
 
+set(WITH_OPENGL_ES true)
+
 find_path(
         EMSCRIPTEN_INCLUDE_DIR
         emscripten.h
